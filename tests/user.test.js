@@ -1,7 +1,6 @@
 const request = require("supertest");
 const User = require("../models/userModel");
 const app = require("../app");
-const { post } = require("../route/user_route");
 
 const userOne = {
   user_name: "Abdullahi",
@@ -19,6 +18,10 @@ beforeEach(async () => {
   await User.deleteMany();
   await new User(userOne).save();
   await new User(userTwo).save();
+});
+
+afterAll(async () => {
+  await mongoose.connection.close();
 });
 
 describe("GET--users APIs ", () => {
