@@ -2,27 +2,27 @@ const request = require("supertest");
 const User = require("../models/userModel");
 const app = require("../app");
 
-const userOne = {
-  user_name: "Abdullahi",
-  user_email: "abdullahi@example.com",
-  user_password: "abdalle1251!",
-};
+// const userOne = {
+//   user_name: "Abdullahi",
+//   user_email: "abdullahi@example.com",
+//   user_password: "abdalle1251!",
+// };
 
-const userTwo = {
-  user_name: "hodan",
-  user_email: "hodan@example.com",
-  user_password: "hodatw616!",
-};
+// const userTwo = {
+//   user_name: "hodan",
+//   user_email: "hodan@example.com",
+//   user_password: "hodatw616!",
+// };
 
-beforeEach(async () => {
-  await User.deleteMany();
-  await new User(userOne).save();
-  await new User(userTwo).save();
-});
+// beforeEach(async () => {
+//   await User.deleteMany();
+//   await new User(userOne).save();
+//   await new User(userTwo).save();
+// });
 
-afterAll(async () => {
-  await mongoose.connection.close();
-});
+// afterAll(async () => {
+//   await mongoose.connection.close();
+// });
 
 describe("GET--users APIs ", () => {
   test(" Should return users --> Array of users objects", async () => {
