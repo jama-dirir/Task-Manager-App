@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
 const { default: isEmail } = require("validator/lib/isEmail");
-const bcryptjs = require("bcryptjs");
+const bcrypt = require("bcrypt");
 const Schema = mongoose.Schema;
 const jwt = require("jsonwebtoken");
 
@@ -62,7 +62,7 @@ userSchema.statics.findByCredentials = async (user_email, user_password) => {
     throw new Error("Unable to login");
   }
 
-  const isMatch = await bcryptjs.compare(user_password, user.user_password);
+  const isMatch = await bcrypt.compare(user_password, user.user_password);
   if (!isMatch) {
     throw new Error("Unable to login");
   }
@@ -74,7 +74,7 @@ userSchema.statics.findByCredentials = async (user_email, user_password) => {
 userSchema.pre("save", async function (next) {
   const user = this;
   if (user.isModified("user_password")) {
-    user.user_password = await bcryptjs.hash(user.user_password, 8);
+    user.user_password = await bcrypt.hash(user.user_password, 8);
   }
   next();
 });
